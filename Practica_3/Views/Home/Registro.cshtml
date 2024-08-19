@@ -1,5 +1,6 @@
 ﻿
 @model Practica_3.Entities.Registro
+@* @model Practica_3.baseDatos. *@
 
 @{
     ViewBag.Title = "Registro";
@@ -12,33 +13,58 @@
     @using (Html.BeginForm("Registro", "Home"))
     {
         <div class="form-group mb-3">
-            <label for="compra">Compra</label>
-            @Html.TextBoxFor(m => m.Compra, new { 
-                @type = "text", 
-                @class = "form-control", 
-                @placeholder = "Seleccione la Compra", 
-                @id = "compra", 
-                @required = "required"
-            })
+            @Html.Label("Seleccione una compra")
+            <div class="input-group mb-3">
+                @*
+                    @Html.DropDownListFor(m => m.Compra,
+                    ViewBag.Roles as List<SelectListItem>,
+                    new {
+                        @class = "form-select",
+                        @id = "compra",
+                        @required = "required",
+                        /** onkeyup = "ConsultarSaldoCompras();" */
+                    })
+                *@
+                @Html.DropDownListFor(m => m.Compra,
+                new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Opción 1", Value = "1" },
+                    new SelectListItem { Text = "Opción 2", Value = "2" },
+                    new SelectListItem { Text = "Opción 3", Value = "3" }
+                },
+                new
+                    {
+                    @class = "form-select",
+                    @id = "compra",
+                    @required = "required",
+                    /** onkeyup = "ConsultarSaldoCompras();" */
+                })
+            </div>
         </div>
+
         <div class="form-group mb-3">
             <label for="saldo">Saldo</label>
-            @Html.TextBoxFor(m => m.Saldo, new { 
-                @type = "number", 
-                @class = "form-control", 
-                @placeholder = "", 
-                @id = "saldo", 
+            @Html.TextBoxFor(m => m.Saldo, new
+            {
+                @type = "number",
+                @class = "form-control",
+                @placeholder = "",
+                @id = "saldo",
                 @required = "required",
-                /** onkeyup = "ConsultarSaldoCompras();" */
+                @readOnly = true
             })
         </div>
+
         <div class="form-group mb-3">
             <label for="abono">Abono</label>
-            @Html.TextBoxFor(m => m.Abono, new { 
-                @type = "number", @class = "form-control", 
-                @placeholder = "Ingrese el monto del abono", 
-                @id = "abono", 
-                @required = "required" })
+            @Html.TextBoxFor(m => m.Abono, new
+            {
+                @type = "number",
+                @class = "form-control",
+                @placeholder = "Ingrese el monto del abono",
+                @id = "abono",
+                @required = "required"
+            })
         </div>
         <button type="submit" class="btn btn-primary">Registrar</button>
     }
