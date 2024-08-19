@@ -1,12 +1,36 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Universidad\\Practica_3\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Practica3\\Practica_3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|c:\\practica3\\practica_3\\practica_3\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|solutionrelative:practica_3\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Practica3\\Practica_3\\Practica_3\\baseDatos\\Model1.edmx",
+              "RelativeDocumentMoniker": "Practica_3\\baseDatos\\Model1.edmx",
+              "ToolTip": "C:\\Practica3\\Practica_3\\Practica_3\\baseDatos\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "Practica_3\\baseDatos\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2024-08-19T01:32:36.135Z",
+              "EditorCaption": " [Diagram1]"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
