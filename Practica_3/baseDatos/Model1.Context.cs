@@ -12,6 +12,8 @@ namespace Practica_3.baseDatos
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class PracticaS13Entities : DbContext
     {
@@ -27,5 +29,37 @@ namespace Practica_3.baseDatos
     
         public virtual DbSet<Abonos> Abonos { get; set; }
         public virtual DbSet<Principal> Principal { get; set; }
+    
+        public virtual ObjectResult<ObtenerCompras_Result> ObtenerCompras()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerCompras_Result>("ObtenerCompras");
+        }
+    
+        public virtual ObjectResult<ObtenerComprasPendientes_Result> ObtenerComprasPendientes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerComprasPendientes_Result>("ObtenerComprasPendientes");
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> ObtenerSaldoCompra(Nullable<long> id_Compra)
+        {
+            var id_CompraParameter = id_Compra.HasValue ?
+                new ObjectParameter("Id_Compra", id_Compra) :
+                new ObjectParameter("Id_Compra", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("ObtenerSaldoCompra", id_CompraParameter);
+        }
+    
+        public virtual int RegistrarAbono(Nullable<long> id_Compra, Nullable<decimal> monto)
+        {
+            var id_CompraParameter = id_Compra.HasValue ?
+                new ObjectParameter("Id_Compra", id_Compra) :
+                new ObjectParameter("Id_Compra", typeof(long));
+    
+            var montoParameter = monto.HasValue ?
+                new ObjectParameter("Monto", monto) :
+                new ObjectParameter("Monto", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarAbono", id_CompraParameter, montoParameter);
+        }
     }
 }

@@ -146,6 +146,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="baseDatos\ObtenerComprasPendientes_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="baseDatos\ObtenerCompras_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="baseDatos\Principal.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

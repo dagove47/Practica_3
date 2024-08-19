@@ -77,3 +77,7 @@ C:\Practica3\Practica_3\Practica_3\obj\Debug\Practica_3.csproj.CoreCompileInputs
 C:\Practica3\Practica_3\Practica_3\obj\Debug\Practica_3.csproj.Up2Date
 C:\Practica3\Practica_3\Practica_3\obj\Debug\Practica_3.dll
 C:\Practica3\Practica_3\Practica_3\obj\Debug\Practica_3.pdb
+C:\Practica3\Practica_3\Practica_3\bin\EntityFramework.dll
+C:\Practica3\Practica_3\Practica_3\bin\EntityFramework.SqlServer.dll
+C:\Practica3\Practica_3\Practica_3\bin\EntityFramework.xml
+C:\Practica3\Practica_3\Practica_3\bin\EntityFramework.SqlServer.xml

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PracticaS13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PracticaS13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Abonos">
           <Key>
             <PropertyRef Name="Id_Abono" />
@@ -36,6 +36,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ObtenerCompras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ObtenerComprasPendientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ObtenerSaldoCompra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Compra" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="RegistrarAbono" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Compra" Type="bigint" Mode="In" />
+          <Parameter Name="Monto" Type="decimal" Mode="In" />
+        </Function>
         <EntityContainer Name="PracticaS13ModelStoreContainer">
           <EntitySet Name="Abonos" EntityType="Self.Abonos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Principal" EntityType="Self.Principal" Schema="dbo" store:Type="Tables" />
@@ -44,8 +53,7 @@
             <End Role="Abonos" EntitySet="Abonos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PracticaS13Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -89,7 +97,28 @@
             <End Role="Principal" EntitySet="Principal" />
             <End Role="Abonos" EntitySet="Abonos" />
           </AssociationSet>
+          <FunctionImport Name="ObtenerCompras" ReturnType="Collection(PracticaS13Model.ObtenerCompras_Result)" />
+          <FunctionImport Name="ObtenerComprasPendientes" ReturnType="Collection(PracticaS13Model.ObtenerComprasPendientes_Result)" />
+          <FunctionImport Name="ObtenerSaldoCompra" ReturnType="Collection(Decimal)">
+            <Parameter Name="Id_Compra" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarAbono">
+            <Parameter Name="Id_Compra" Mode="In" Type="Int64" />
+            <Parameter Name="Monto" Mode="In" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="ObtenerCompras_Result">
+          <Property Type="Int64" Name="Id_Compra" Nullable="false" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="Saldo" Nullable="false" Precision="18" Scale="5" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="ObtenerComprasPendientes_Result">
+          <Property Type="Int64" Name="Id_Compra" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="500" />
+          <Property Type="Decimal" Name="Saldo" Nullable="false" Precision="18" Scale="5" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -117,6 +146,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ObtenerCompras" FunctionName="PracticaS13Model.Store.ObtenerCompras">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PracticaS13Model.ObtenerCompras_Result">
+                <ScalarProperty Name="Id_Compra" ColumnName="Id_Compra" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ObtenerComprasPendientes" FunctionName="PracticaS13Model.Store.ObtenerComprasPendientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PracticaS13Model.ObtenerComprasPendientes_Result">
+                <ScalarProperty Name="Id_Compra" ColumnName="Id_Compra" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ObtenerSaldoCompra" FunctionName="PracticaS13Model.Store.ObtenerSaldoCompra" />
+          <FunctionImportMapping FunctionImportName="RegistrarAbono" FunctionName="PracticaS13Model.Store.RegistrarAbono" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
