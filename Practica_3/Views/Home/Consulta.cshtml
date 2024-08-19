@@ -1,8 +1,41 @@
-﻿
+﻿@* @model List < Practica_3.baseDatos. > *@
+
 @{
     ViewBag.Title = "Consulta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Consulta</h2>
+<main class="container mt-5">
+    <h2>Consulta</h2>
+    <h3 style="color:red">@ViewBag.msj</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr class="bg-dark text-white">
+                <th scope="col">Compra</th>
+                <th scope="col">Saldo</th>
+                <th scope="col">Abonado</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Compra...</td>
+                <td>Saldo...</td>
+                <td>Abonado...</td>
+                <td>Estado...</td>
+            </tr>
+            @* 
+            @foreach (var elem in Model)  // activar cuando ya exista conexion a la BD
+            {
+                <tr>
+                    <td>@elem.Compra</td>
+                    <td>@elem.Saldo</td>
+                    <td>@elem.Abonado</td>
+                    <td>@elem.Estado</td>
+                </tr>
+            }
+            *@
+        </tbody>
+    </table>
+</main>
 
