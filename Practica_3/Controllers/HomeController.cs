@@ -21,16 +21,15 @@ namespace Practica_3.Controllers
         [HttpGet]
         public ActionResult Consulta()
         {
+            var compras = ProductoM.consultarCompras();
+
+
             ViewBag.msj = "";
-            return View();
+            return View(compras);
         }
 
-        [HttpPost]
-        public ActionResult Consulta(Consulta entity)
-        {
-            ViewBag.msj = "";
-            return View();
-        }
+
+
         [HttpGet]
         public ActionResult Registro()
         {

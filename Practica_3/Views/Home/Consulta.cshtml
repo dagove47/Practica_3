@@ -1,4 +1,4 @@
-﻿@* @model List < Practica_3.baseDatos. > *@
+﻿@model List < Practica_3.Entities.Consulta > 
 
 @{
     ViewBag.Title = "Consulta";
@@ -11,30 +11,24 @@
     <table class="table table-striped">
         <thead>
             <tr class="bg-dark text-white">
-                <th scope="col">Compra</th>
+                <th scope="col">Codigo Compra</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Precio</th>
                 <th scope="col">Saldo</th>
-                <th scope="col">Abonado</th>
                 <th scope="col">Estado</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Compra...</td>
-                <td>Saldo...</td>
-                <td>Abonado...</td>
-                <td>Estado...</td>
-            </tr>
-            @* 
             @foreach (var elem in Model)  // activar cuando ya exista conexion a la BD
             {
                 <tr>
-                    <td>@elem.Compra</td>
+                    <td>@elem.Id_Compra</td>
+                    <td>@elem.Descripcion</td>
+                    <td>@elem.Precio</td>
                     <td>@elem.Saldo</td>
-                    <td>@elem.Abonado</td>
                     <td>@elem.Estado</td>
                 </tr>
             }
-            *@
         </tbody>
     </table>
 </main>
