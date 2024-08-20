@@ -7,7 +7,7 @@ namespace Practica_3.Entities
 {
     public class Consulta
     {
-        public string Compra { get; set; }
+        public int id_Compra { get; set; }
         public int Saldo { get; set; }
         public int Abono { get; set; }
         public string Estado { get; set; }

@@ -61,5 +61,10 @@ namespace Practica_3.baseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarAbono", id_CompraParameter, montoParameter);
         }
+    
+        public virtual ObjectResult<ConsultarCompras_Result> ConsultarCompras()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarCompras_Result>("ConsultarCompras");
+        }
     }
 }

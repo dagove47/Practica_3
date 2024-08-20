@@ -7,7 +7,7 @@ namespace Practica_3.Entities
 {
     public class Registro
     {
-        public string Compra { get; set; }
+        public long Id_Compra { get; set; }
         public int Saldo { get; set; }
         public int Abono { get; set; }
     }
