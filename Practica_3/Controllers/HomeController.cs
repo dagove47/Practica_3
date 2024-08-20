@@ -47,8 +47,6 @@ namespace Practica_3.Controllers
             ViewBag.ComprasPendientes = new SelectList(lstProductos, "Value", "Text");
             return View();
         }
-
-
         [HttpPost]
         public ActionResult Registro(Registro registro)
         {
@@ -61,10 +59,21 @@ namespace Practica_3.Controllers
             }
             else
             {
+                // Si hay un error, vuelve a llenar el ViewBag.ComprasPendientes
+                var productos = ProductoM.ObtenerProductosPendientes();
+                var lstProductos = productos.Select(item => new SelectListItem
+                {
+                    Value = item.Id_Compra.ToString(),
+                    Text = item.Descripcion
+                }).ToList();
+
+                ViewBag.ComprasPendientes = new SelectList(lstProductos, "Value", "Text");
+
                 ViewBag.msj = "Error! Su información no se ha registrado";
                 return View();
             }
         }
+
 
         [HttpGet]
         public JsonResult ConsultarSaldo(long id)

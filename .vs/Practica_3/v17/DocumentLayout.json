@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Practica_3\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|c:\\practica_3\\practica_3\\models\\registromodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|solutionrelative:practica_3\\models\\registromodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|c:\\practica_3\\practica_3\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|solutionrelative:practica_3\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|c:\\practica_3\\practica_3\\models\\productomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|solutionrelative:practica_3\\models\\productomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|c:\\practica_3\\practica_3\\views\\home\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -13,14 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|c:\\practica_3\\practica_3\\entities\\registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|solutionrelative:practica_3\\entities\\registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|c:\\practica_3\\practica_3\\models\\productomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|solutionrelative:practica_3\\models\\productomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|c:\\practica_3\\practica_3\\models\\registromodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|solutionrelative:practica_3\\models\\registromodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DFC11E3C-9442-445E-B8F1-E372FA7E2A90}|Practica_3\\Practica_3.csproj|c:\\practica_3\\practica_3\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
@@ -34,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Registro.cs",
               "DocumentMoniker": "C:\\Practica_3\\Practica_3\\Entities\\Registro.cs",
               "RelativeDocumentMoniker": "Practica_3\\Entities\\Registro.cs",
@@ -51,7 +51,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "ProductoModel.cs",
               "DocumentMoniker": "C:\\Practica_3\\Practica_3\\Models\\ProductoModel.cs",
               "RelativeDocumentMoniker": "Practica_3\\Models\\ProductoModel.cs",
@@ -64,39 +64,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Practica_3\\Practica_3\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Practica_3\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Practica_3\\Practica_3\\Controllers\\HomeController.cs*",
-              "RelativeToolTip": "Practica_3\\Controllers\\HomeController.cs*",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAQwC4AAABWAAAA",
+              "ToolTip": "C:\\Practica_3\\Practica_3\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Practica_3\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-19T20:46:15.703Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "RegistroModel.cs",
               "DocumentMoniker": "C:\\Practica_3\\Practica_3\\Models\\RegistroModel.cs",
               "RelativeDocumentMoniker": "Practica_3\\Models\\RegistroModel.cs",
               "ToolTip": "C:\\Practica_3\\Practica_3\\Models\\RegistroModel.cs",
               "RelativeToolTip": "Practica_3\\Models\\RegistroModel.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAUwCoAAAAAAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAQwAsAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-19T19:52:27.01Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Registro.cshtml",
               "DocumentMoniker": "C:\\Practica_3\\Practica_3\\Views\\Home\\Registro.cshtml",
               "RelativeDocumentMoniker": "Practica_3\\Views\\Home\\Registro.cshtml",
               "ToolTip": "C:\\Practica_3\\Practica_3\\Views\\Home\\Registro.cshtml",
               "RelativeToolTip": "Practica_3\\Views\\Home\\Registro.cshtml",
-              "ViewState": "AQIAACQAAAAAAAAAAAAYwD4AAAASAAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAYwDkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-08-19T19:47:12.112Z",
               "EditorCaption": ""
