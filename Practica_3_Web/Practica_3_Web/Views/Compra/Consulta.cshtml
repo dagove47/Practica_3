@@ -1,0 +1,47 @@
+﻿@model CompraModel;
+
+@{
+    ViewData["Title"] = "Consulta";
+}
+
+<section class="mt-5">
+    <h2 class="mb-5">Consulta</h2>
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class="alert alert-danger text-center">@ViewBag.Mensaje</div>
+    }
+    <table class="table table-striped">
+        <thead>
+            <tr class="bg-dark text-white">
+                <th scope="col">Código de Compra</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Saldo</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>123</td>
+                <td>Producto 99</td>
+                <td>₡ 1235</td>
+                <td>₡ 1235</td>
+                <td>Pendiente</td>
+            </tr>
+        </tbody>
+        @*
+        <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+        <td>@item.Cedula</td>
+        <td>@item.Nombre</td>
+        <td>@item.Marca</td>
+        <td>@item.Modelo</td>
+        <td>₡ @item.Precio</td>
+        </tr>
+        }
+        </tbody>
+        *@
+    </table>
+</section>
