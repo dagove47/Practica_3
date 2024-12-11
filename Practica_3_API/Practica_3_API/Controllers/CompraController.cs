@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Practica_3_API.Model;
+using Microsoft.Extensions.Configuration;
 
 namespace Practica_3_API.Controllers
 {
@@ -11,38 +12,79 @@ namespace Practica_3_API.Controllers
     [ApiController]
     public class CompraController : ControllerBase
     {
-        private readonly string _connectionString;
-        public CompraController(IConfiguration configuration)
+        private readonly IConfiguration _conf;
+        private readonly IHostEnvironment _env;
+
+        public CompraController(IConfiguration conf, IHostEnvironment env)
         {
-            // Inicializar _connectionString con la cadena de conexión del archivo appsettings.json
-            _connectionString = configuration.GetConnectionString("DefaultConnection")
-                                ?? throw new ArgumentNullException(nameof(configuration), "La cadena de conexión no puede ser nula");
+            _conf = conf;
+            _env = env;
         }
 
 
-        [HttpGet("ConsultarProductos")]
-        public async Task<IActionResult> ConsultarProductos()
+        [HttpGet]
+        [Route("Consultar")]
+        public IActionResult Consultar()
         {
-            try
+            using (var context = new SqlConnection(_conf.GetSection("ConnectionStrings:DefaultConnection").Value))
             {
-                using (var connection = new SqlConnection(_connectionString))
+                var respuesta = new Respuesta();
+                var result = context.Query<CompraModel>("sp_ConsultarProductos", new { });
+
+                if (result.Any())
                 {
-                    var productos = await connection.QueryAsync<dynamic>("sp_ConsultarProductos", commandType: CommandType.StoredProcedure);
-                    return Ok(productos);
+                    respuesta.Codigo = 0;
+                    respuesta.Contenido = result;
                 }
-            }
-            catch (SqlException ex)
-            {
-                return StatusCode(500, $"Error en la consulta: {ex.Message}");
+                else
+                {
+                    respuesta.Codigo = -1;
+                    respuesta.Mensaje = "No hay compras registradas en este momento";
+                }
+
+                return Ok(respuesta);
             }
         }
 
 
+        [HttpPost]
+        [Route("Registrar")]
+        public IActionResult Registrar(AbonoModel model)
+        {
+            using (var context = new SqlConnection(_conf.GetSection("ConnectionStrings:DefaultConnection").Value))
+            {
+                var respuesta = new Respuesta();
 
-        [HttpGet("ConsultarAbonos/{idCompra}")]
+                try
+                {
+                    var result = context.Execute("sp_RegistrarAbono", new { model.Id_Compra, model.Monto });
+
+                    if (result > 0)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Mensaje = "Abono registrado correctamente";
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Mensaje = "Error: El abono no se pudo registrar correctamente.";
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    respuesta.Codigo = -1;
+                    respuesta.Mensaje = "Error: " + ex.Message;
+                }
+
+                return Ok(respuesta);
+            }
+        }
+
+        [HttpGet]
+        [Route("ConsultarAbonos/{idCompra}")]
         public async Task<IActionResult> ConsultarAbonos(long idCompra)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(_conf.GetConnectionString("DefaultConnection")))
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id_Compra", idCompra);
@@ -55,35 +97,6 @@ namespace Practica_3_API.Controllers
                 catch (SqlException ex)
                 {
                     return StatusCode(500, $"Error al consultar abonos: {ex.Message}");
-                }
-            }
-        }
-
-
-        [HttpPost("RegistrarAbono")]
-        public async Task<IActionResult> RegistrarAbono([FromBody] AbonoModel abono)
-        {
-            // Validar que el abono no sea nulo y que el monto sea positivo
-            if (abono == null || abono.Monto <= 0)
-            {
-                return BadRequest("Datos del abono no válidos.");
-            }
-
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var parameters = new DynamicParameters();
-                parameters.Add("@Id_Compra", abono.Id_Compra);  // ID de la compra
-                parameters.Add("@Monto", abono.Monto);          // Monto del abono
-
-                try
-                {
-                    // Llamar al procedimiento almacenado utilizando Dapper
-                    await connection.ExecuteAsync("sp_RegistrarAbono", parameters, commandType: CommandType.StoredProcedure);
-                    return Ok("Abono registrado exitosamente.");
-                }
-                catch (SqlException ex)
-                {
-                    return StatusCode(500, $"Error al registrar el abono: {ex.Message}");
                 }
             }
         }

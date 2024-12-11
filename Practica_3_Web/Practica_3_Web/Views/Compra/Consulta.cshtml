@@ -1,11 +1,10 @@
-﻿@model CompraModel;
-
-@{
+﻿@{
     ViewData["Title"] = "Consulta";
+    var listaCompras = ViewBag.ListaCompras as List<CompraModel>;
 }
 
 <section class="mt-5">
-    <h2 class="mb-5">Consulta</h2>
+    <h2 class="mb-5 text-center">Consulta</h2>
     @if (ViewBag.Mensaje != null)
     {
         <div class="alert alert-danger text-center">@ViewBag.Mensaje</div>
@@ -21,27 +20,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>123</td>
-                <td>Producto 99</td>
-                <td>₡ 1235</td>
-                <td>₡ 1235</td>
-                <td>Pendiente</td>
-            </tr>
+            @if (listaCompras != null && listaCompras.Any())
+            {
+                @foreach (var item in listaCompras)
+                {
+                    <tr>
+                        <td>@item.Id_Compra</td>
+                        <td>@item.Descripcion</td>
+                        <td>₡ @item.Precio</td>
+                        <td>₡ @item.Saldo</td>
+                        <td>@item.Estado</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No hay compras registradas.</td>
+                </tr>
+            }
         </tbody>
-        @*
-        <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-        <td>@item.Cedula</td>
-        <td>@item.Nombre</td>
-        <td>@item.Marca</td>
-        <td>@item.Modelo</td>
-        <td>₡ @item.Precio</td>
-        </tr>
-        }
-        </tbody>
-        *@
     </table>
 </section>

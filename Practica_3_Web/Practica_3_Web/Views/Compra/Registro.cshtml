@@ -1,5 +1,65 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model AbonoModel;
+
 @{
+    ViewData["Title"] = "Registro";
 }
+
+<section class="mt-5">
+    <h2 class="mb-5 text-center">Registro</h2>
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class="alert alert-danger text-center">@ViewBag.Mensaje</div>
+    }
+    @using (Html.BeginForm("Registro", "Compra"))
+    {
+        <div class="form-group mb-3">
+            <label for="Id_Compra">Compra</label>
+
+            @if (ViewBag.ListaCompras != null && ((List<CompraModel>)ViewBag.ListaCompras).Any())
+            {
+                @Html.DropDownListFor(
+                    m => m.Id_Compra,
+                    new SelectList(ViewBag.ListaCompras, "Id_Compra", "Descripcion"),
+                    "Seleccione una compra",
+                    new { @class = "form-control", @id = "Id_Compra" }
+                )
+            }
+            else
+            {
+                <p class="text-danger">No hay compras disponibles para seleccionar.</p>
+            }
+        </div>
+
+        <div class="form-group mb-3 mt-5 d-flex">
+            <p>Saldo anterior:</p>
+            <span class="ms-3">₡</span>
+            <span id="Saldo" class="fw-bolder"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="Monto">Abono</label>
+            @Html.TextBoxFor(m => m.Monto, new { @type = "number", @class = "form-control", @placeholder = "₡", @id = "Monto", @required = "required" })
+        </div>
+
+        <input type="submit" class="w-100 btn btn-primary mt-3" value="Registrar">
+    }
+</section>
+
+
+<script>
+    var listaCompras = @Html.Raw(Json.Serialize(ViewBag.ListaCompras));
+
+    document.getElementById("Id_Compra").addEventListener("change", function () {
+        var selectedId = this.value;
+        var selectedCompra = listaCompras.find(function (compra) {
+            return compra.id_Compra.toString() === selectedId;
+        });
+
+        if (selectedCompra) {
+            document.getElementById("Saldo").innerText = selectedCompra.saldo.toFixed(2);
+        } else {
+            document.getElementById("Saldo").innerText = "";
+        }
+    });
+</script>
+
